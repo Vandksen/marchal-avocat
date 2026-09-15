@@ -201,7 +201,7 @@ h1, h2, h3, p, ul {
   flex-direction: column;
   padding: 28px 24px 24px;
   border: 1px solid #e2eaec;
-  border-radius: 16px;
+  border-radius: 5px;
   background-color: #fff;
   box-shadow: 0 1px 2px rgba(16, 42, 50, .04), 0 8px 24px rgba(16, 42, 50, .06);
   transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
@@ -354,7 +354,81 @@ h1, h2, h3, p, ul {
 }
 
 .contact__block {
-  min-width: 30%;
+  flex: 1;
+  min-width: 0;
+}
+
+.contact__map {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
+  min-height: 260px;
+  max-width: 100%;
+  border: 1px solid #d3e0e3;
+  border-radius: 5px;
+  background-color: #eaf3f5;
+  box-shadow: 0 8px 24px rgba(16, 42, 50, .08);
+}
+
+/* Iframe plus grande que le cadre : les boutons de zoom et les crédits
+   intégrés sortent de la zone visible, le marqueur reste centré */
+.contact__map iframe {
+  position: absolute;
+  top: -30px;
+  left: -60px;
+  display: block;
+  width: calc(100% + 120px);
+  height: calc(100% + 60px);
+  border: 0;
+  filter: grayscale(1) contrast(1.05);
+}
+
+/* Teinte verte posée sur la carte, sans bloquer les clics */
+.contact__map::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: #d0dedd;
+  mix-blend-mode: multiply;
+  pointer-events: none;
+}
+
+.contact__map-footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 4px 12px;
+  margin-top: 12px;
+}
+
+.contact__map-credit {
+  color: #5b6b70;
+  font-size: 11px;
+}
+
+.contact__map-credit a {
+  text-decoration: none;
+}
+
+.contact__map-credit a:hover {
+  text-decoration: underline;
+}
+
+.contact__map-link {
+  display: inline-block;
+  color: var(--teal);
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.contact__map-link::after {
+  content: " →";
+}
+
+.contact__map-link:hover {
+  text-decoration: underline;
 }
 
 .contact .skill__title {
@@ -390,6 +464,19 @@ h1, h2, h3, p, ul {
 
   .about__photo {
     min-width: 0;
+  }
+
+  .contact {
+    flex-wrap: wrap;
+  }
+
+  .contact__block:last-child {
+    flex-basis: 100%;
+  }
+
+  .contact__map {
+    aspect-ratio: auto;
+    height: 300px;
   }
 
   .footer {

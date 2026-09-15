@@ -152,6 +152,18 @@
             <li>Du lundi au jeudi : 9h - 19h<br>Vendredi : 9h - 16h</li>
           </ul>
         </div>
+        <div class="contact__block">
+          <h3 class="skill__title">Plan d’accès</h3>
+          <div class="contact__map">
+            <iframe
+              data-src="https://www.openstreetmap.org/export/embed.html?bbox=7.7475%2C48.5812%2C7.7556%2C48.5848&amp;layer=mapnik&amp;marker=48.58302%2C7.75155"
+              title="Plan d’accès : 5 rue des Juifs, 67000 Strasbourg"></iframe>
+          </div>
+          <div class="contact__map-footer">
+            <a href="https://www.google.com/maps/search/?api=1&amp;query=5+rue+des+Juifs+67000+Strasbourg" target="_blank" rel="noopener" class="contact__map-link">Ouvrir l’itinéraire</a>
+            <span class="contact__map-credit">© <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">contributeurs OpenStreetMap</a></span>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -159,6 +171,24 @@
       <p><span class="footer__year">2026</span> - Cécile MARCHAL - Mentions légales et CGU - Politique de confidentialité</p>
     </footer>
   </section>
+
+  <script>
+    // La carte n'est chargée qu'une fois visible : chargée hors écran,
+    // elle s'initialise à une mauvaise taille (tuiles partielles, marqueur décentré).
+    (function () {
+      var map = document.querySelector('.contact__map iframe');
+      if (!map) return;
+      var load = function () { map.src = map.dataset.src; };
+      if (!('IntersectionObserver' in window)) return load();
+      var observer = new IntersectionObserver(function (entries) {
+        if (entries[0].isIntersecting) {
+          observer.disconnect();
+          load();
+        }
+      });
+      observer.observe(map.parentElement);
+    })();
+  </script>
 
 </body>
 </html>
