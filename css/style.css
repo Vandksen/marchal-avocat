@@ -215,24 +215,8 @@ h1, h2, h3, p, ul {
 
 .domain-card__head {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
-}
-
-.domain-card__icon {
-  display: flex;
   justify-content: center;
-  align-items: center;
-  width: 52px;
-  height: 52px;
-  border-radius: 12px;
-  background-color: #eaf3f5;
-}
-
-.domain-card__icon img {
-  height: 34px;
-  width: auto;
+  margin-bottom: 20px;
 }
 
 .domain-card__count {
